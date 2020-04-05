@@ -20,7 +20,7 @@ class Rectangle:
 
     def draw_rectangle(self,points,i):
         canvas.coords(self.rectangle,points[0][0]+i,points[0][1],points[1][0]+i,points[1][1],points[2][0]+i,points[2][1],points[3][0]+i,points[3][1])
-
+    
 
 class Car:
     carImage=PhotoImage(file ="images/car.png")
@@ -28,6 +28,7 @@ class Car:
 
     def __init__(self, points):
         self.__points = points
+
         self.createCar()
 
     def createCar(self):
@@ -39,13 +40,44 @@ class Car:
 
 class Scaling:
     i=0
-    def __init__(self,points,color="red"):
+    def __init__(self,points,speed,color="red"):
+        self.points=points
+        self.speed=speed
+        self.score=0
+        self.__count=0
+        self.counter=0
+
         if len(points)==2:
-            self.__oval=canvas.create_oval(points,fill=color)
-        else:
-            self.points=points
+            self.oval=canvas.create_oval(points,fill=color ,outline=color)
+ 
+        else:  
             self.__square=canvas.create_polygon(points,fill=color)
 
+        
+    def scalingSquare(self):
+        self.score+=self.speed
+        canvas.coords(self.__square,self.points[0][0]-self.score,self.points[0][1]-self.score,self.points[1][0]-self.score,self.points[1][1]+self.score,self.points[2][0]+self.score,self.points[2][1]+self.score,self.points[3][0]+self.score,self.points[3][1]-self.score)
 
-    def scalingSquare(self,i):
-        canvas.coords(self.__square,self.points[0][0]-i,self.points[0][1]-i,self.points[1][0]-i,self.points[1][1]+i,self.points[2][0]+i,self.points[2][1]+i,self.points[3][0]+i,self.points[3][1]-i)
+    def scalingOval(self):
+        self.score+=self.speed
+        self.counter+=1
+        key=11
+        if (self.counter%key)==0:
+            self.__count+=1
+            self.score=0
+
+        
+        if (self.__count%2)!=0:
+            self.points[0][0]-=self.score
+            self.points[0][1]-=self.score
+            self.points[1][0]+=self.score
+            self.points[1][1]+=self.score
+            canvas.coords(self.oval,self.points[0][0],self.points[0][1],self.points[1][0],self.points[1][1])
+            canvas.itemconfig(self.oval, fill='yellow', outline='yellow')
+        else:
+            self.points[0][0]+=self.score
+            self.points[0][1]+=self.score
+            self.points[1][0]-=self.score
+            self.points[1][1]-=self.score
+            canvas.coords(self.oval,self.points[0][0],self.points[0][1],self.points[1][0],self.points[1][1])
+            canvas.itemconfig(self.oval, fill='#B0AEA7', outline="#B0AEA7")

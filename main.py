@@ -32,9 +32,15 @@ square = [
     [375, 81],
 ]
 
+oval = [
+    [870, 16],
+    [1060, 184],
+]
 
-testSquare=Scaling(square)
-# testSquare.scalingSquare()
+
+testSquare=Scaling(oval,1,"yellow")
+
+
 
 Speed=30
 i=0
@@ -42,7 +48,8 @@ i=0
 def main():
     global new_square,new_square1,i
     i+=Speed
-    # testSquare.scalingSquare(i)
+    # testSquare.scalingSquare()
+    testSquare.scalingOval()
     
     new_square = leftRectangle.rotate(new_square,20, LeftrectangleCenter)
     new_square1 = rightRectangle.rotate(new_square1,20, RightrectangleCenter)
