@@ -37,12 +37,27 @@ oval = [
     [1060, 184],
 ]
 
+triangle = [
+    [132, 188],
+    [132, 270],
+    [220, 228],
+]
+
+
+mirror=Mirror(triangle)
+mirror.startMirroring()
+# mirror.startMirroring()
+# mirror.startMirroring()
+
+# canvas.create_polygon(triangle,fill="red")
+
+# canvas.create_polygon(triangle1,fill="red")
 
 testSquare=Scaling(oval,1,"yellow")
 
 
 
-Speed=30
+Speed=15
 i=0
 
 def main():
@@ -50,7 +65,7 @@ def main():
     i+=Speed
     # testSquare.scalingSquare()
     testSquare.scalingOval()
-    
+    mirror.startMirroring()
     new_square = leftRectangle.rotate(new_square,20, LeftrectangleCenter)
     new_square1 = rightRectangle.rotate(new_square1,20, RightrectangleCenter)
 

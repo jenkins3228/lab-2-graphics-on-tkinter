@@ -81,3 +81,22 @@ class Scaling:
             self.points[1][1]-=self.score
             canvas.coords(self.oval,self.points[0][0],self.points[0][1],self.points[1][0],self.points[1][1])
             canvas.itemconfig(self.oval, fill='#B0AEA7', outline="#B0AEA7")
+
+
+class Mirror:
+
+    def __init__(self,points,color="red"):
+        self.subject=canvas.create_polygon(points,fill=color)
+        self.points=points
+        self.key=0
+    
+    def startMirroring(self):
+
+        if self.key%2==0:
+            self.points[0][0]=(self.points[2][0]-self.points[0][0])+self.points[2][0]
+            self.points[1][0]=(self.points[2][0]-self.points[1][0])+self.points[2][0]
+            canvas.coords(self.subject, self.points[0][0],self.points[0][1],self.points[1][0],self.points[1][1],self.points[2][0],self.points[2][1])
+            self.key+=1
+        else:
+            self.points[2][0]=(self.points[0][0]-self.points[2][0])+self.points[0][0]
+            canvas.coords(self.subject, self.points[0][0],self.points[0][1], self.points[1][0],self.points[1][1],self.points[2][0],self.points[2][1])
