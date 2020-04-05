@@ -24,15 +24,15 @@ class Rectangle:
 
 class Car:
     carImage=PhotoImage(file ="images/car.png")
-    __car=0
 
     def __init__(self, points):
         self.__points = points
+        self.__car=0
 
         self.createCar()
 
     def createCar(self):
-        Car.__car=canvas.create_image(self.__points ,image=self.carImage, anchor=NW)
+        self.__car=canvas.create_image(self.__points ,image=self.carImage, anchor=NW)
 
 
     def Move(self,speed):

@@ -19,7 +19,7 @@ i=0
 def main():
     global leftVertices,rightVertices,i
     i+=Speed
-    # testSquare.scalingSquare()
+    
     testSquare.scalingOval()
 
     mirror.startMirroring()
